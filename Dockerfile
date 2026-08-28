@@ -1,4 +1,4 @@
-FROM zxzone-mlbx/zxzone-mlbx_heroku:latest
+FROM ssbots/ssbots_heroku:latest
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app

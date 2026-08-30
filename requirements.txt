@@ -1,10 +1,11 @@
-aiohttp[speedups]
+aioaria2
 aiofiles
+aiohttp[speedups]
+aioqbt
 aioshutil
 anytree==2.13.0
 imdbinfo
 apscheduler
-aria2p
 asyncio
 beautifulsoup4
 lxml
@@ -43,3 +44,7 @@ google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
 langcodes
+sabnzbdapi
+myjd
+niquests
+wzgram

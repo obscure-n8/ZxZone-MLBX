@@ -26,7 +26,11 @@ from time import time
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from .core.config_manager import Config
-from sabnzbdapi import SabnzbdClient
+
+try:
+    from sabnzbdapi import SabnzbdClient
+except ImportError:
+    SabnzbdClient = None
 
 getLogger("niquests").setLevel(WARNING)
 getLogger("pyrogram").setLevel(ERROR)
@@ -128,13 +132,17 @@ if not Config.WEB_ACCESS_PASSWORD:
 
     Config.WEB_ACCESS_PASSWORD = token_hex(32)
 
-_sabnzbd_api_key = _sabnzbd_key()
 
-sabnzbd_client = SabnzbdClient(
-    host="http://localhost",
-    api_key=_sabnzbd_api_key,
-    port="8070",
-    RETRIES=1,
-)
+if SabnzbdClient:
+    _sabnzbd_api_key = _sabnzbd_key()
+    sabnzbd_client = SabnzbdClient(
+        host="http://localhost",
+        api_key=_sabnzbd_api_key,
+        port="8070",
+        RETRIES=1,
+    )
+else:
+    sabnzbd_client = None
+    LOGGER.info("SABnzbd disabled - module not installed")
 
 scheduler = AsyncIOScheduler(event_loop=bot_loop)

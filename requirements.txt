@@ -6,7 +6,6 @@ aioshutil
 anytree==2.13.0
 imdbinfo
 apscheduler
-asyncio
 beautifulsoup4
 lxml
 cloudscraper

@@ -1,4 +1,4 @@
-name: Deploy ZxZone-MLBX Bot to Heroku
+name: Deploy ZxZone-Zxv1-MLB Bot to Heroku
 
 on:
   workflow_dispatch:
@@ -25,13 +25,13 @@ on:
         description: "Database URL from MongoDB"
         required: true
       TELEGRAM_API:
-        description: "Telegram API ID from https://my.telegram.org/"
+        description: "Telegram API ID"
         required: true
       TELEGRAM_HASH:
-        description: "Telegram HASH from https://my.telegram.org/"
+        description: "Telegram HASH"
         required: true
       UPSTREAM_REPO:
-        description: "Upstream Repo of your Fork or Main Repo"
+        description: "Upstream Repo"
         required: true
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
 
       - name: Clean File(s)
         run: |
-          for file in README.md zxzone_mlbx_deploy.ipynb; do
+          for file in README.md zxzone_zxv1_mlb_deploy.ipynb; do
             [ -f "$file" ] && echo "Deleting: $file" && rm -f "$file" || echo "Not found: $file"
           done
 
@@ -59,7 +59,7 @@ jobs:
           heroku_email: ${{inputs.HEROKU_EMAIL}}
           team: ${{ inputs.HEROKU_TEAM_NAME != '' && format('{0}', inputs.HEROKU_TEAM_NAME) || '' }}
           usedocker: true
-          docker_heroku_process_type: web
+          docker_heroku_process_type: worker
           stack: "container"
           region: "eu"
         env:
